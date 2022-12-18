@@ -1,14 +1,30 @@
+{% load static %}
 <html>
     <head>
+        <link rel="stylesheet" href="{% static 'css/posts.css'%}">
+        <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <title>Django Girls blog</title>
     </head>
     <body>
-       {% for item in posts %}
-            <div>
-                <p>published: {{item.published_date}}</p>
-                <h1><a href="">{{item.title}}</a></h1>
-                <p>{{item.text}}</p>
+        <div class="header-page">
+            <h1><a href="/">Django Blog</a></h1>
+        </div>
+       <div class="content-container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="date">
+                                <p>Опубликовано: {{ post.published_date }}</p>
+                            </div>
+                            <h1 class="title"><a href="">{{ post.title }}</a></h1>
+                            <p>{{ post.text|linebreaksbr }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-        {% endfor %}
+        </div>
     </body>
 </html>
